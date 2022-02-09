@@ -6,6 +6,9 @@ authors = ["Dustin Vannatter <dustin@vannatter.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+watchdog = "^2.1.6"
+configparser = "^5.2.0"
+requests = "^2.27.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

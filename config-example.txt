@@ -1,0 +1,3 @@
+[swg-scanner]
+scannerUserID = 1
+mailPath = C:\SWG Restoration III\profiles\sena\Restoration\mail_Sena Hax
