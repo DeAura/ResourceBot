@@ -5,6 +5,7 @@ import time
 import logging, sys
 import configparser
 import json
+import os
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 
 class OnMyWatch:
@@ -53,7 +54,9 @@ class Handler(FileSystemEventHandler):
                     'scannerUserID': scannerUserID
                 }
                 json_content = json.dumps(data)
-                auth.send_mailContent(json_content)
+                resp = auth.send_mailContent(json_content)
+                print(resp)
+
 
 def main_process():
     return 1
