@@ -14,12 +14,14 @@ class OnMyWatch:
     config.read_file(open(r'config.txt'))
     watchDirectory = config.get('swg-scanner', 'mailPath')
     print(watchDirectory)
+    print('ready for scanning..')
 
     def __init__(self):
         self.observer = Observer()
 
     def run(self):
         event_handler = Handler()
+        
         self.observer.schedule(event_handler, self.watchDirectory, recursive = True)
         self.observer.start()
         try:
@@ -28,6 +30,7 @@ class OnMyWatch:
         except:
             self.observer.stop()
             print("Observer Stopped")
+            exit()
 
         self.observer.join()
 
@@ -44,6 +47,7 @@ class Handler(FileSystemEventHandler):
             config = configparser.ConfigParser()
             config.read_file(open(r'config.txt'))
             scannerUserID = config.get('swg-scanner', 'scannerUserID')
+            scannerUserKey = config.get('swg-scanner', 'scannerUserKey')
 
             print("Watchdog received created event - % s." % event.src_path)
             with open(event.src_path) as f:
@@ -51,7 +55,8 @@ class Handler(FileSystemEventHandler):
                 print(contents)
                 data = {
                     'incomingData': contents,
-                    'scannerUserID': scannerUserID
+                    'scannerUserID': scannerUserID,
+                    'scannerUserKey': scannerUserKey
                 }
                 json_content = json.dumps(data)
                 resp = auth.send_mailContent(json_content)
