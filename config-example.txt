@@ -1,3 +1,4 @@
 [swg-scanner]
 scannerUserID = 1
+scannerUserKey = abcd
 mailPath = C:\SWG Restoration III\profiles\sena\Restoration\mail_Sena Hax
